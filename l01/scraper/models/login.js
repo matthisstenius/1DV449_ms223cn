@@ -8,10 +8,15 @@ var cheerio = require('cheerio'),
 module.exports = function(callback) {
 	var url = 'http://vhost3.lnu.se:20080/~1dv449/scrape/check.php';
 
-	request.post({
+	var options = {
 		url: url,
-		form: {username: 'admin', password: 'admin'}
-	}, function(error, response, body) {
+		form: {
+			username: 'admin', 
+			password: 'admin'
+		}
+	};
+
+	request.post(options, function(error, response, body) {
 		if (error) {
 			callback(error);
 		}

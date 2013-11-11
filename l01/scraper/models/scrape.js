@@ -14,7 +14,12 @@ module.exports = function(headers, callback) {
 	var cookie = request.cookie(sessionCookie[0]);
 	jar.add(cookie);
 	
-	request({url: url, jar: jar}, function(err, res, body) {
+	var options = {
+		url: url,
+		jar: jar
+	};
+
+	request(options, function(err, res, body) {
 		if (err) {
 			callback(err);
 		}
