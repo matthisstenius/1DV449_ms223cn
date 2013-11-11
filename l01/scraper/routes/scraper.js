@@ -1,14 +1,21 @@
-var scrapeModel = require('../models/scrape');
+var login = require('../models/login'),
+	scrape = require('../models/scrape');
 
 exports.scrape = function(req, res) {
-	var url = 'http://vhost3.lnu.se:20080/~1dv449/scrape/';
-
-	scrapeModel(url, function(err, result) {
+	login(function(err, headers) {
 		if (err) {
-			console.log(err);
+			console.log(err.message);
 			return;
 		}
 
-		console.log(result);
+		scrape(headers, function(err, result) {
+			if (err) {
+				console.log(err);
+				return;
+			}
+
+			console.log(result);
+		});
+		
 	});
 };

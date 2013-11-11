@@ -1,20 +1,28 @@
-var cheerio = require('cheerio'),
-	http = require('http');
+var request = require('request');
 
-module.exports = function(url, callback) {
-	http.get('http://vhost3.lnu.se:20080/~1dv449/scrape/', function(res) {
-	  	var data = '';
+/**
+ * Scrapes http://vhost3.lnu.se:20080/~1dv449/scrape/secure/producenter.php
+ * @param  {array}   headers  HTTP headers
+ * @param  {function} callback
+ */
+module.exports = function(headers, callback) {
+	var url = 'http://vhost3.lnu.se:20080/~1dv449/scrape/secure/producenter.php';
 
-	  	res.on('data', function(chunk) {
-	  		data += chunk;
-	  	});
+	var sessionCookie = headers['set-cookie'][1].split(';', 1);
+	
+	var jar = request.jar();
+	var cookie = request.cookie(sessionCookie[0]);
+	jar.add(cookie);
+	
+	request({url: url, jar: jar}, function(err, res, body) {
+		if (err) {
+			callback(err);
+		}
 
-	  	res.on('end', function() {
-	  		callback(null, data);
-	  	});
+		if (res.statusCode != 200) {
+			callback(new Error('Could not fetch data ', res.statusCode));
+		}
 
-	  	res.on('error', function(err) {
-	  		callback(err);
-	  	});
-  });
+		callback(body);
+	});
 };
