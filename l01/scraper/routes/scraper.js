@@ -15,13 +15,13 @@ exports.scrape = function(req, res) {
 				return;
 			}
 
-			producersModel(result, headers, function(err, html) {
+			producersModel(result, headers, function(err) {
 				if (err) {
 					console.log(err);
 					return;
 				}
 
-				//res.render('index', producers);
+				res.redirect('result');
 			});
 		});
 		

@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	section.producers
+		each producer in producers
+			article.producer
+				h1.title= producer.name
+				p= producer.producerID
+				p= producer.city
+				a(href=producer.website) producer.website

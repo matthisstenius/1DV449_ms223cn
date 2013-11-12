@@ -27,9 +27,9 @@ module.exports = function(headers, callback) {
 		}
 
 		if (res.statusCode != 200) {
-			callback(new Error('Could not fetch data ', res.statusCode));
+			callback(new Error('Could not fetch data ' + res.statusCode));
 		}
-		
+
 		callback(null, body);
 	});
 };

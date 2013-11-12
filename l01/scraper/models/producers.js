@@ -1,5 +1,6 @@
 var cheerio = require('cheerio'),
-	request = require('request');
+	request = require('request'),
+	db = require('../db.js');
 
 /**
  * [Scrapes producer pages]
@@ -47,11 +48,27 @@ module.exports = function(data, headers, callback) {
 		}
 	};
 
+	var counter = 0;
+	
 	/**
 	 * @param  {[Object]} producer
 	 */
 	addProducer(function(producer) {
-		//@todo add to db
-		console.log(producer);
+		counter++;
+		db.Producer.create({
+			producerID: producer.producerID,
+			name: producer.name,
+			city: producer.city,
+			website: producer.website
+		}, function(err) {
+			if (err) {
+				callback(err);
+				return;
+			}
+		});
+
+		if (counter === producerLinks.length - 1) {
+			callback(null);
+		}
 	});
 };

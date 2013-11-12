@@ -6,6 +6,7 @@
 var express = require('express');
 var routes = require('./routes');
 var scraper = require('./routes/scraper');
+var result = require('./routes/result');
 var http = require('http');
 var path = require('path');
 
@@ -29,6 +30,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/result', result);
 app.get('/scrape', scraper.scrape);
 
 http.createServer(app).listen(app.get('port'), function(){
