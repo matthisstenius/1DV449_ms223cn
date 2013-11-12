@@ -4,7 +4,15 @@ block content
 	section.producers
 		each producer in producers
 			article.producer
+				if producer.lastScraped
+					p= producer.lastScraped
+				if producer.count
+					p= producer.count
+				img(src=producer.imgSrc)
 				h1.title= producer.name
 				p= producer.producerID
 				p= producer.city
-				a(href=producer.website) producer.website
+				if producer.website
+					a(href=producer.website) producer.website
+				else
+					p Webbsida saknas

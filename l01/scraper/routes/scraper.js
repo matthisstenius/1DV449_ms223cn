@@ -1,21 +1,21 @@
-var login = require('../models/login'),
-	scrape = require('../models/scrape'),
+var loginModel = require('../models/login'),
+	linkModel = require('../models/link'),
 	producersModel = require('../models/producers');
 
 exports.scrape = function(req, res) {
-	login(function(err, headers) {
+	loginModel(function login(err, headers) {
 		if (err) {
 			console.log(err.message);
 			return;
 		}
 
-		scrape(headers, function(err, result) {
+		linkModel(headers, function getLinks(err, result) {
 			if (err) {
 				console.log(err);
 				return;
 			}
 
-			producersModel(result, headers, function(err) {
+			producersModel(result, headers, function addProducers(err) {
 				if (err) {
 					console.log(err);
 					return;

@@ -10,6 +10,9 @@ db.once('open', function callback() {
 		name: {type: String},
 		city: {type: String},
 		website: {type: String},
+		count: {type: Number, default: 0},
+		lastScraped: {type: Date},
+		imgSrc: {type: String}
 	});
 
 	module.exports.Producer = mongoose.model('Producer', ProducerSchema);

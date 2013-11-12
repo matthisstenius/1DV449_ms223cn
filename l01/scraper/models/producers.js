@@ -1,5 +1,6 @@
 var cheerio = require('cheerio'),
 	request = require('request'),
+	fs = require('fs'),
 	db = require('../db.js');
 
 /**
@@ -21,54 +22,81 @@ module.exports = function(data, headers, callback) {
 	var jar = request.jar();
 	jar.add(sessionCookie);
 
+	for (var i = 0; i < producerLinks.length; i++) {		
+		(function(i) {
+			request({url: baseUrl +  $(producerLinks[i]).attr('href'), jar: jar}, function handleData(err, res, body) {
+				if (err) {
+					console.log(err);
+					return;
+				}
 
-	/**
-	 * Formats producer data
-	 * @param {Function} callback
-	 */
-	function addProducer(callback) {
-		for (var i = 0; i < producerLinks.length; i++) {		
-			(function(i) {
-				request({url: baseUrl +  $(producerLinks[i]).attr('href'), jar: jar}, function(err, res, body) {
-					if (res.statusCode === 200) {
-						var $ = cheerio.load(body);
-						
-						var producerID = $(producerLinks[i]).attr('href').replace(/[^0-9]*/g, '');
-						var city = $('.ort').text().replace(/.*:\s/, '');
-						
-						callback({
-							producerID: producerID,
-							name: $('h1').text(),
-							city: city,
-							website: $('a[href^="http://www"]').attr('href')
-						});
+				if (res.statusCode === 200) {
+					var $ = cheerio.load(body);
+					
+					var producerID = $(producerLinks[i]).attr('href').replace(/[^0-9]*/g, '');
+					var city = $('.ort').text().replace(/.*:\s/, '');
+					var imgSrc = $('img').attr('src');
+
+					if (imgSrc) {
+						request(baseUrl + imgSrc).pipe(fs.createWriteStream('./public/' + imgSrc));
 					}
-				});	
-			})(i);
-		}
-	};
+
+					addProducer({
+						producerID: producerID,
+						name: $('h1').text(),
+						city: city,
+						website: $('a[href^="http://www"]').attr('href'),
+						imgSrc: imgSrc
+					});
+				}
+			});	
+		})(i);
+	}
 
 	var counter = 0;
 	
 	/**
 	 * @param  {[Object]} producer
 	 */
-	addProducer(function(producer) {
+	function addProducer(producer) {
 		counter++;
-		db.Producer.create({
-			producerID: producer.producerID,
-			name: producer.name,
-			city: producer.city,
-			website: producer.website
-		}, function(err) {
+
+		db.Producer.findOne({producerID: producer.producerID}, function(err, producerExist) {
 			if (err) {
-				callback(err);
+				console.log(err);
 				return;
 			}
-		});
 
+			if (producerExist) {
+				db.Producer.findByIdAndUpdate(producerExist._id, {
+					count: producerExist.count + 1,
+					lastScraped: new Date()
+				}, function(err) {
+					if (err) {
+						callback(err);
+						return;
+					}
+				});
+			}
+
+			else {
+				db.Producer.create({
+					producerID: producer.producerID,
+					name: producer.name,
+					city: producer.city,
+					website: producer.website,
+					imgSrc: producer.imgSrc
+				}, function(err) {
+					if (err) {
+						callback(err);
+						return;
+					}
+				});
+			}
+		});
+		
 		if (counter === producerLinks.length - 1) {
 			callback(null);
 		}
-	});
+	}
 };
