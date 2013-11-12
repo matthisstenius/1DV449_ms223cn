@@ -10,8 +10,9 @@ module.exports = function(headers, callback) {
 
 	var sessionCookie = headers['set-cookie'][1].split(';', 1);
 	
-	var jar = request.jar();
 	var cookie = request.cookie(sessionCookie[0]);
+	
+	var jar = request.jar();
 	jar.add(cookie);
 	
 	var options = {
@@ -20,6 +21,7 @@ module.exports = function(headers, callback) {
 	};
 
 	request(options, function(err, res, body) {
+		
 		if (err) {
 			callback(err);
 		}
@@ -27,7 +29,7 @@ module.exports = function(headers, callback) {
 		if (res.statusCode != 200) {
 			callback(new Error('Could not fetch data ', res.statusCode));
 		}
-
-		callback(body);
+		
+		callback(null, body);
 	});
 };

@@ -1,5 +1,6 @@
 var login = require('../models/login'),
-	scrape = require('../models/scrape');
+	scrape = require('../models/scrape'),
+	producersModel = require('../models/producers');
 
 exports.scrape = function(req, res) {
 	login(function(err, headers) {
@@ -14,7 +15,14 @@ exports.scrape = function(req, res) {
 				return;
 			}
 
-			console.log(result);
+			producersModel(result, headers, function(err, html) {
+				if (err) {
+					console.log(err);
+					return;
+				}
+
+				//res.render('index', producers);
+			});
 		});
 		
 	});
