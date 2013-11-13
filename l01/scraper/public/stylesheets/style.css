@@ -1,8 +1,21 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #EDEDED;
 }
 
 a {
   color: #00B7FF;
+}
+
+.producers {
+	width: 500px;
+	margin: 0 auto;
+}
+
+.producer {
+	margin: 20px 0;
+	background-color: white;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 10px;
 }

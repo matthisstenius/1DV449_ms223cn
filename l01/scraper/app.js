@@ -9,13 +9,22 @@ var scraper = require('./routes/scraper');
 var result = require('./routes/result');
 var http = require('http');
 var path = require('path');
+var handlebars = require('express3-handlebars');
 
 var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+
+hbs = handlebars.create({
+	defaultLayout: 'main',
+	partialsDir: 'views',
+	layoutsDir: 'views/layout'
+});
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());

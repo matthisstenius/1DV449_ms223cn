@@ -1,0 +1,25 @@
+<section class="producers">
+	<h1>Producenterna - En skrpning</h1>
+	{{#each producers}}
+		<article class="producer">
+			{{#if lastScraped}}
+				<p>Senast skrapad: {{lastScraped}}</p>
+			{{/if}}
+
+			{{#if count}}
+				<p>Antal skarpningar: {{count}}</p>
+			{{/if}}	
+
+			<h2>{{name}}</h2>
+			<p>ID: {{producerID}}</p>
+			<img src="{{imgSrc}}" width="480px">	
+			<p>{{city}}</p>
+
+			{{#if website}}
+				<a href="{{website}}">{{website}}</a>
+			{{else}}
+				<p>Webbplats sakans</p>
+			{{/if}}
+		</article>
+	{{/each}}
+</section>
