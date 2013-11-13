@@ -11,8 +11,15 @@
 			{{/if}}	
 
 			<h2>{{name}}</h2>
+
 			<p>ID: {{producerID}}</p>
-			<img src="{{imgSrc}}" width="480px">	
+
+			{{#if imgSrc}}
+				<img src="{{imgSrc}}" width="480px">	
+			{{else}}
+				<p>Bild saknas</p>
+			{{/if}}
+
 			<p>{{city}}</p>
 
 			{{#if website}}
