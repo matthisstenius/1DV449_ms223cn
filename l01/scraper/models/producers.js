@@ -68,9 +68,12 @@ module.exports = function(data, headers, callback) {
 			}
 
 			if (producerExist) {
+				var dateString = new Date();
+				dateString = dateString.toDateString() + ' ' + dateString.getHours() + ':' + dateString.getMinutes();
+				
 				db.Producer.findByIdAndUpdate(producerExist._id, {
 					count: producerExist.count + 1,
-					lastScraped: new Date()
+					lastScraped: dateString
 				}, function(err) {
 					if (err) {
 						callback(err);

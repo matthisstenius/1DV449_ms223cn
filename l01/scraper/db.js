@@ -11,7 +11,7 @@ db.once('open', function callback() {
 		city: {type: String},
 		website: {type: String},
 		count: {type: Number, default: 0},
-		lastScraped: {type: Date},
+		lastScraped: {type: String},
 		imgSrc: {type: String}
 	});
 

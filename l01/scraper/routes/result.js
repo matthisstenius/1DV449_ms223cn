@@ -6,7 +6,7 @@ module.exports = function(req, res, next) {
 			console.log(err);
 			return;
 		}
-
+		
 		res.render('result', {producers: producers});
 	});
 };
