@@ -17,4 +17,10 @@ db.once('open', function callback() {
 
 	module.exports.Producer = mongoose.model('Producer', ProducerSchema);
 
+	var NotFoundSchema = mongoose.Schema({
+		brokenLink: String
+	});
+
+	module.exports.NotFound = mongoose.model('NotFound', NotFoundSchema);
+
 });

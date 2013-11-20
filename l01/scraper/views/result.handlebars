@@ -30,4 +30,13 @@
 			{{/if}}
 		</article>
 	{{/each}}
+
+	{{#if brokenLinks}}
+		<h3>Kunde inte skrapa följande sidor</h3>
+		<ul>
+		{{#each brokenLinks}}
+			<li>{{brokenLink}}</li>
+		{{/each}}
+		</ul>
+	{{/if}}
 </section>

@@ -30,9 +30,9 @@ module.exports = function(data, headers, callback) {
 					return;
 				}
 
+				var $ = cheerio.load(body);
+
 				if (res.statusCode === 200) {
-					var $ = cheerio.load(body);
-					
 					var producerID = $(producerLinks[i]).attr('href').replace(/[^0-9]*/g, '');
 					var city = $('.ort').text().replace(/.*:\s/, '');
 					var imgSrc = $('img').attr('src');
@@ -48,6 +48,10 @@ module.exports = function(data, headers, callback) {
 						website: $('a[href^="http://www"]').attr('href'),
 						imgSrc: imgSrc
 					});
+				}
+
+				else if (res.statusCode === 404) {
+					add404(baseUrl + $(producerLinks[i]).attr('href'));
 				}
 			});	
 		})(i);
@@ -101,5 +105,14 @@ module.exports = function(data, headers, callback) {
 		if (counter === producerLinks.length - 1) {
 			callback(null);
 		}
+	}
+
+	function add404(brokenLink) {
+		db.NotFound.findOneAndUpdate({brokenLink: brokenLink}, {brokenLink: brokenLink}, {upsert: true}, function(err, brokenLink) {
+			if (err) {
+				console.log(err);
+				return;
+			}
+		});
 	}
 };

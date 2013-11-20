@@ -7,6 +7,13 @@ module.exports = function(req, res, next) {
 			return;
 		}
 		
-		res.render('result', {producers: producers});
+		db.NotFound.find({}, function(err, brokenLinks) {
+			if (err) {
+				console.log(err);
+				return;
+			}
+
+			res.render('result', {producers: producers, brokenLinks: brokenLinks});
+		});
 	});
 };
