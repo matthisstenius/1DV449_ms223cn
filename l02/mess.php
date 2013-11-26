@@ -16,8 +16,6 @@
 	<link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/screen.css" media="screen"/>
     <link rel="stylesheet" href="css/lightbox.css" media="screen"/>
-	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/longpoll.js"></script>
 	
 	<style type="text/css">
 	
@@ -28,7 +26,7 @@
 	}
 	</style>
 	
-	<script src="js/lightbox.js"></script>
+	
     
 	<title>Messy Labbage</title>
 
@@ -230,8 +228,7 @@
 	  	</div><!-- mess_container -->
 
 	    </div> <!-- /container -->
-		<script type="text/javascript" src="js/modernizr.custom.js"></script>
-		<script type="text/javascript" src="js/ajax_minified.js"></script>
+		
 		<style type="text/css">
 			#mess_p_mess {
 				width: 100%; height: 250px; overflow-y: scroll !important; border: solid 3px black; padding: 5px;
@@ -242,5 +239,10 @@
 			}
 			
 		</style>
+		<script src="js/lightbox.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/longpoll.js"></script>
+		<script type="text/javascript" src="js/modernizr.custom.js"></script>
+		<script type="text/javascript" src="js/ajax_minified.js"></script>
 	  </body>
 	</html>
