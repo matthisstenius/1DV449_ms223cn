@@ -103,11 +103,9 @@
 
 	    </div> <!-- /container -->
 		
-		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery-min.js"></script>
 		<script src="js/main.js"></script>
 		<script src="js/lightbox.js"></script>
-		<script type="text/javascript" src="js/longpoll.js"></script>
 		<script type="text/javascript" src="js/modernizr.custom.js"></script>
-		<script type="text/javascript" src="js/ajax_minified.js"></script>
 	  </body>
 	</html>
