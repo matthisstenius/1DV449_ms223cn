@@ -14,14 +14,11 @@
     <link rel="shortcut icon" href="favicon.png">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Karla:400,700">
 	<link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/screen.css" media="screen"/>
-    <link rel="stylesheet" href="css/lightbox.css" media="screen"/>
-    <link rel="stylesheet" href="css/main.css" media="screen"/>
+	<script type="text/javascript" src="js/modernizer.custom.min.js"></script>
+
+    <link rel="stylesheet" href="css/site.css" media="screen"/>
 	
 	<title>Messy Labbage</title>
-
-	<!-- Bootstrap core CSS -->
-	    <link href="css/bootstrap.css" rel="stylesheet">
 
 	    <!-- Custom styles for this template -->
 	    <link href="http://vhost3.lnu.se:20080/~1dv449/scrape/css.php?css=grid1" rel="stylesheet">
@@ -103,9 +100,6 @@
 
 	    </div> <!-- /container -->
 		
-		<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-		<script src="js/main.js"></script>
-		<script src="js/lightbox-2.6.min.js"></script>
-		<script type="text/javascript" src="js/modernizer.custom.min.js"></script>
+		<script src="js/site.js"></script>
 	  </body>
 	</html>
