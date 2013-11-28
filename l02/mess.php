@@ -103,9 +103,9 @@
 
 	    </div> <!-- /container -->
 		
-		<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 		<script src="js/main.js"></script>
 		<script src="js/lightbox-2.6.min.js"></script>
-		<script type="text/javascript" src="js/modernizr.custom.min.js"></script>
+		<script type="text/javascript" src="js/modernizer.custom.min.js"></script>
 	  </body>
 	</html>
