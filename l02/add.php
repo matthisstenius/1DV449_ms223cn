@@ -17,12 +17,12 @@ function addToDB($name, $message, $pid) {
 	
 	try {
 		$stm = $db->prepare($q);
-		
+
 		if(!$stm) {
 			die("Fel vid insert");
 		}
 
-		$stm->execute(array(':name' => $name, '$message' => $message, ':pid' => $pid));
+		$stm->execute(array(':name' => $name, ':message' => $message, ':pid' => $pid));
 	}
 	catch(PDOException $e) {
 		die("Something went wrong -> " .$e->getMessage());
