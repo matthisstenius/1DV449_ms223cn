@@ -59,7 +59,8 @@
 				
 				foreach($ps as $p) {
 					
-					echo('<a onclick="changeProducer(' .$p["producerID"] .');" href="#mess_anchor">' .$p["name"] .'</a><br />');	
+					echo('<a onclick="changeProducer(' . htmlspecialchars($p["producerID"]) .');" href="#mess_anchor">' 
+						. htmlspecialchars($p["name"]) .'</a><br />');	
 				}
 			?>
 			</div>

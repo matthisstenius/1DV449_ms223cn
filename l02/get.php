@@ -25,7 +25,7 @@ function getMessage($nr) {
 		echo("Error creating query: " .$e->getMessage());
 		return false;
 	}
-	
+
 	if($result)
 		return $result[0];
 	else

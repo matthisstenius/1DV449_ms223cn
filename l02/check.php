@@ -2,8 +2,8 @@
 require_once("sec.php");
 
 // check tha POST parameters
-$u = $_POST['username'];
-$p = $_POST['password'];
+$u = htmlspecialchars($_POST['username']);
+$p = htmlspecialchars($_POST['password']);
 
 // Check if user is OK
 if(isUser($u, $p)) {
