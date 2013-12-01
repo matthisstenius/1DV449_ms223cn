@@ -2,23 +2,36 @@
 require_once("get.php");
 require_once("add.php");
 require_once("sec.php");
+require_once("antiForgery.php");
 sec_session_start();
 
 /*
 * It's here all the ajax calls goes
 */ 
+
+if (isset($_POST['function'])) {
+  if($_POST['function'] == 'add') {
+       
+      $name = htmlentities($_POST["name"]);
+      $message = htmlentities($_POST["message"]);
+      $pid = htmlentities($_POST["pid"]);
+      
+      // Check if request is valid
+      if (checkForgery($_POST['antiForgeryToken'])) {
+        addToDB($name, $message, $pid);
+        echo "Det gick fint! Ladda om sidan för att se ditt meddelande!";  
+      }
+      
+      else {
+        header('HTTP/1.1 401 Unauthorized'); die(); // Yey!
+      }   
+    }
+}
+
 if(isset($_GET['function'])) {
 	
 	if($_GET['function'] == 'logout') {
 		logout();
-    } elseif($_GET['function'] == 'add') {
-       
-	  $name = htmlentities($_GET["name"]);
-		$message = htmlentities($_GET["message"]);
-		$pid = htmlentities($_GET["pid"]);
-		
-		addToDB($name, $message, $pid);
-		echo "Det gick fint! Ladda om sidan för att se ditt meddelande!";
     }
 
     elseif($_GET['function'] == 'producers') {

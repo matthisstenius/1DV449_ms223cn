@@ -72,7 +72,7 @@
 
 			<!-- This is the part that will be populated with data from AJAX -->	
 			<div id="mess_anchor"></div>	
-			<div id="mess_container">
+			<div id="mess_container" data-antiForgeryToken="<?php echo $_SESSION['antiForgeryToken']?>">
 				<div class="row">
 					<!-- Headline will be updated here -->
 		  	     	<div class="col-md-6" height="250px">

@@ -37,11 +37,12 @@ $( document ).ready(
 			var name_val = $('#name_txt').val();
 			var message_val = $('#message_ta').val();
 			var pid =  $('#mess_inputs').val();
+			var antiForgeryToken = $('#mess_container').attr('data-antiforgerytoken');
 			// make ajax call to logout
 			$.ajax({
-				type: "GET",
+				type: "POST",
 			  	url: "functions.php",
-			  	data: {function: "add", name: name_val, message: message_val, pid: pid}
+			  	data: {function: "add", name: name_val, message: message_val, pid: pid, antiForgeryToken: antiForgeryToken}
 			}).done(function(data) {
 			  alert(data);
 			});
