@@ -28,15 +28,6 @@ function checkUser() {
 	
 	$user = getUser($_SESSION["user"]);
 	$un = $user[0]["username"];
-	
-	if(isset($_SESSION['login_string'])) {
-		if($_SESSION['login_string'] !== hash('sha512', "Come_On_You_Spurs" + $un) ) {
-			header('HTTP/1.1 401 Unauthorized'); die(); // Yey!
-		}
-	}
-	else {
-		header('HTTP/1.1 401 Unauthorized'); die();
-	}
 }
 
 function isUser($u, $p) {
@@ -97,12 +88,4 @@ function getUser($user) {
 	return $result;
 }
 
-function logout() {
-	
-	if(!session_id()) {
-		sec_session_start();
-	}
-	session_end();
-	header('Location: index.php');
-}
 

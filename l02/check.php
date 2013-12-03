@@ -9,7 +9,6 @@ $p = htmlspecialchars($_POST['password']);
 if(isUser($u, $p)) {
 	// set the session
 	sec_session_start();
-	$_SESSION['login_string'] = hash('sha512', "Come_On_You_Spurs" +$u); 
 	$_SESSION['user'] = $u;
 	header("Location: mess.php");
 }

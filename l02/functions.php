@@ -30,11 +30,7 @@ if (isset($_POST['function'])) {
 
 if(isset($_GET['function'])) {
 	
-	if($_GET['function'] == 'logout') {
-		logout();
-    }
-
-    elseif($_GET['function'] == 'producers') {
+    if ($_GET['function'] == 'producers') {
     	$pid = htmlentities($_GET["pid"]);
       $cleanProducers = getProducer($pid);
 
