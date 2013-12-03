@@ -37,7 +37,13 @@ $( document ).ready(
 			  	url: "functions.php",
 			  	data: {function: "add", name: name_val, message: message_val, pid: pid, antiForgeryToken: antiForgeryToken}
 			}).done(function(data) {
-			  alert(data);
+			  var message = JSON.parse(data);
+
+			  var messageString = '<p class="message_container">' + message.message + 
+			  					'</br>Skrivet av: ' + message.name + '</p>'; 
+			  					
+			  $('#mess_p_mess').prepend(messageString);
+			  $('#message_ta').val('');
 			});
 		  
 	  });

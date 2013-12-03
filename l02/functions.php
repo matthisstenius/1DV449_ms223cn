@@ -19,7 +19,7 @@ if (isset($_POST['function'])) {
       // Check if request is valid
       if (checkForgery($_POST['antiForgeryToken'])) {
         addToDB($name, $message, $pid);
-        echo "Det gick fint! Ladda om sidan för att se ditt meddelande!";  
+        echo(json_encode(['message' => $message, 'name' => $name]));  
       }
       
       else {

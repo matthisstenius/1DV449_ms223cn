@@ -23,6 +23,7 @@ function addToDB($name, $message, $pid) {
 		}
 
 		$stm->execute(array(':name' => $name, ':message' => $message, ':pid' => $pid));
+		
 	}
 	catch(PDOException $e) {
 		die("Something went wrong -> " .$e->getMessage());
