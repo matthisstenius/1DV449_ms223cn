@@ -119,7 +119,7 @@ Jag personligen ser inte detta som ett jätte stort problem eftersom man kan kol
 
 Vissa bildresurser skulle kunna bakas ihop till en spite. Detta betyder att man kombinerar flera bildfiler till en. Man kan sedan komma åt de olika bilderna via "position" attributet i css. Fördelen med denna princip är att man får ner antalet HTTP anrop.
 
-# Uppgift två Säkerhet
+# Uppgift 2 Säkerhet
 
 ## Paramatiserade SQL-satser
 
@@ -159,7 +159,7 @@ Om person b kan komma åt person a konto så kan person b göra vad som helst ef
 
 Jag har täppt igen detta hål genom att sköta utläggningen på severn som tar bort sessionen när en utloggning sker. På så vis så kan man inte komma åt sidor som kräver inloggning förens man loggat in igen.
 
-# Uppgift tre Ajax
+# Uppgift 3 Ajax
 
 Innan var man tvungen att ladda om sidan för att få se det meddelande man precis skrivit. Även fast meddelandet postades via Ajax så renderades det inte ut direkt i Javascriptet. Detta gjorde att användaren själv var tvungen att ladda om sidan så att det nya meddelandet hämtades från databasen och sedan visades på sidan.
 
