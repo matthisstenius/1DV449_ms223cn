@@ -9,5 +9,5 @@ if (!session_id()) {
 // Removes the user session
 if (isset($_SESSION['user'])) {
 	unset($_SESSION['user']);
-	header('Location: /');
+	header('Location: /1DV449_ms223cn/l02');
 }
