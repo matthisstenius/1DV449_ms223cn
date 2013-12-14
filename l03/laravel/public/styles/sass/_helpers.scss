@@ -1,0 +1,18 @@
+.clearfix {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.hidden {
+	display: none;
+	visibility: hidden;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
