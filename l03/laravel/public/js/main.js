@@ -11,6 +11,7 @@ $(function() {
 
 		xhr.fail(function(err) {
 			console.log(err);
+			alert("Opps.. Something went wrong and we could not fetch your data at the moment.")
 		});
 	}
 
@@ -21,7 +22,6 @@ $(function() {
 		// Watch for sorting
 		$('#sorting').on('change', function(e) {
 			if (this.value === "") {
-				console.log("kommer");
 				renderTraficInfo(data);
 				renderMap(data);
 			}
@@ -34,7 +34,6 @@ $(function() {
 	// All information
 	function renderMap(data, sorting) {
 		$('#map-canvas').empty();
-
 		var mapOptions = {
 			center: new google.maps.LatLng(62, 15),
 			zoom: 5
@@ -42,11 +41,13 @@ $(function() {
 
 		var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
-		for (var i = 0; i < data.messages.length; i++) {
+		for (var i = 0; i < data.length; i++) {
 			(function(i) {
-				createMap(data.messages[i], map);
+				createMap(data[i], map);
 			})(i);
 		}
+
+		console.log("finished");
 	}
 
 	// Based on sorting type
@@ -58,9 +59,9 @@ $(function() {
 
 		var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
-		for (var i = 0; i < data.messages.length; i++) {
-			if (+type === data.messages[i].category) {
-				createMap(data.messages[i], map);
+		for (var i = 0; i < data.length; i++) {
+			if (+type === data[i].category) {
+				createMap(data[i], map);
 			}
 		}
 	}
@@ -73,12 +74,6 @@ $(function() {
 			map: map
 		});
 
-		// Does not work invalid date
-		// var regex = /Date\((\d+)\+(\d+)\)/;
-
-		// var date = data.messages[i].createddate.match(regex);
-
-		
 		var message = getTraficinfoContent(traficinfo);
 
 		var infowindow = new google.maps.InfoWindow({
@@ -99,8 +94,8 @@ $(function() {
 		$('.trafic-info-area').empty();
 		var $area = $('.trafic-info-area');
 
-		for (var i = 0; i < data.messages.length; i++) {
-			var message = getTraficinfoContent(data.messages[i]);
+		for (var i = 0; i < data.length; i++) {
+			var message = getTraficinfoContent(data[i]);
 
 			$area.append(message);
 		}
@@ -113,9 +108,9 @@ $(function() {
 
 		var $area = $('.trafic-info-area');
 
-		for (var i = 0; i < data.messages.length; i++) {
-			if (+type === data.messages[i].category) {
-				var message = getTraficinfoContent(data.messages[i]);
+		for (var i = 0; i < data.length; i++) {
+			if (+type === data[i].category) {
+				var message = getTraficinfoContent(data[i]);
 
 				$area.append(message);
 			}
@@ -123,9 +118,12 @@ $(function() {
 	}
 
 	function getTraficinfoContent(traficinfo) {
-		return '<div class=".trafic-info">'
+		var match = traficinfo.createddate.match(/(\d+)\+(\d{4})/);
+        var date = new Date(+match[1]);
+
+		return '<div class="trafic-info">'
 							+ '<h2>' + traficinfo.title + '</h2>'
-							+ '<p>' + traficinfo.createddate + '</p>'
+							+ '<p>' + date.toDateString() + ' ' + date.getHours() + ':' +  date.getMinutes() + '</p>'
 							+ '<p>' + traficinfo.description + '</p>'
 							+ '<p>Kategori: ' + traficinfo.category + '</p>';
 	}

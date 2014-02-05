@@ -3,19 +3,19 @@
 namespace traficinfo\models;
 
 class Traficinfo {
-	private $priority;
+	public $priority;
 
-	private $createddate;
+	public $createddate;
 
-	private $title;
+	public $title;
 
-	private $description;
+	public $description;
 
-	private $latitude;
+	public $latitude;
 
-	private $longitude;
+	public $longitude;
 
-	private $category;
+	public $category;
 
 	public function __construct(
 								$priority,
@@ -26,44 +26,12 @@ class Traficinfo {
 								$longitude,
 								$category) {
 
-		$this->priority = $priority;
-		$this->createddate = $createddate;
-		$this->title = $title;
-		$this->description = $description;
-		$this->latitude = $latitude;
-		$this->longitude = $longitude;
-		$this->category = $category;
+		htmlspecialchars($this->priority = $priority);
+		htmlspecialchars($this->createddate = $createddate);
+		htmlspecialchars($this->title = $title);
+		htmlspecialchars($this->description = $description);
+		htmlspecialchars($this->latitude = $latitude);
+		htmlspecialchars($this->longitude = $longitude);
+		htmlspecialchars($this->category = $category);
 	}
-
-	// public function getPriority() {
-	// 	return $this->priority;
-	// }
-
-	// public function getCreateddate() {
-	// 	return $this->createddate;
-	// }
-
-	// public function getTitle() {
-	// 	return $this->title;
-	// }
-
-	// public function getDescription() {
-	// 	return $this->description;
-	// }
-
-	// public function getLatitude() {
-	// 	return $this->latitude;
-	// }
-
-	// public function getLongitude() {
-	// 	return $this->longitude;
-	// }
-
-	// public function getCategory() {
-	// 	return $this->category;
-	// }
-
-	// public function getSubCategory() {
-	// 	return $this->subcategory;
-	// }
 }

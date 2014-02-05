@@ -1,22 +1,15 @@
 <?php
 
+use traficinfo\webservices\SRTraficWebservice;
+
 class TraficinfoController extends BaseController {
 	private $srTraficWebservice;
 
-	public function __construct(traficinfo\webservices\SRTraficWebservice $srTraficWebservice) {
+	public function __construct(SRTraficWebservice $srTraficWebservice) {
 		$this->srTraficWebservice = $srTraficWebservice;
 	}
 
-	public function index() {
-		// try {
-		// 	$traficInfo = $this->srTraficWebservice->getTraficInfo();	
-		// }
-		
-		// catch (\Exception $e) {
-		// 	dd($e->getMessage());
-		// }
-
-		
+	public function index() {	
 		return View::make('index');
 	}
 

@@ -6,9 +6,11 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <header class="header">
-        <h1>Laboration 3 - Trafikinformation</h1> 
-    </header>
+    <div class="header-wrap">
+        <header class="header grid">
+            <h1 class="logo">Laboration 3 - Trafikinformation</h1> 
+        </header>
+    </div>
 
     <div id="map-canvas"></div>
     <div class="container">
@@ -20,7 +22,7 @@
             <option value="3">Övrigt</option>
         </select>
 
-        <div class="trafic-info-area"></div>
+        <div class="trafic-info-area grid"></div>
         
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

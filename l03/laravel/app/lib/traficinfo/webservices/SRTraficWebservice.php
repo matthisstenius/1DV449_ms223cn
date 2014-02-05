@@ -21,11 +21,11 @@ class SRTraficWebservice extends RequestWrapper {
 																			$traficInfo['category']);
 			}
 
-			return $fromJson;
+			return $traficInfoCollection;
 		}
 
 		catch (\Exception $e) {
-			dd($e->getMessage());
+			throw $e;
 		}
 	}
 }
