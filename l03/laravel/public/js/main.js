@@ -1,4 +1,6 @@
 $(function() {
+	var infoWindow;
+
 	function getTraficinfo() {
 		var xhr = $.ajax({
 			url: '/traficinfo',
@@ -41,10 +43,10 @@ $(function() {
 
 		var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
+		infowindow = new google.maps.InfoWindow();
+
 		for (var i = 0; i < data.length; i++) {
-			(function(i) {
-				createMap(data[i], map);
-			})(i);
+			createMap(data[i], map);
 		}
 
 		console.log("finished");
@@ -76,16 +78,13 @@ $(function() {
 
 		var message = getTraficinfoContent(traficinfo);
 
-		var infowindow = new google.maps.InfoWindow({
-			content: message
-		});
-
 		(function(marker, infowindow) {
 			google.maps.event.addListener(marker, 'click', function() {
+				infowindow.setContent(message);
     			infowindow.open(map,marker);
   			});	
 		})(marker, infowindow);
-		
+
 		marker.setMap(map);
 	}
 

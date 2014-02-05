@@ -21,7 +21,7 @@ class SRTraficWebservice extends RequestWrapper {
 																			$traficInfo['category']);
 			}
 
-			return $traficInfoCollection;
+			return array_reverse($traficInfoCollection);
 		}
 
 		catch (\Exception $e) {
